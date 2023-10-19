@@ -23,24 +23,8 @@ To contribute to this project and run it locally, you will need:
   yarn
   yarn add -g nx # not mandatory, you can use `npx nx` instead
 
-  # add your own variables in `environment.local.ts`
-  touch environments/environment.local.ts
-
   # run the app - it will start a server and livereload the app
   nx serve # or `npx nx serve`
-```
-
-```ts
-// environments/environment.local.ts
-import { base } from './base';
-import { Environment } from './model';
-
-const baseUrl = 'http://localhost:3000';
-
-export const environment: Environment = {
-  ...base,
-  env: 'local'
-};
 ```
 
 ## Cheat sheet
@@ -51,19 +35,26 @@ This project was integrated in a [Nx](https://nx.dev) monorepo with the help of 
   npx create-nx-workspace@latest tasks-list --preset=angular-monorepo --appName=frontend --e2eTestRunner=cypress --interactive=false --routing=true --standaloneApi=true --style=scss --nxCloud=false --packageManager=yarn
 ```
 
+Material was added with:
+
+```shell
+  yarn add @angular/material
+  npx nx g @angular/material:ng-add --project=frontend
+```
+
 Tailwind was added with:
 
 ```shell
   npx nx g @nx/angular:setup-tailwind frontend
 ```
 
-Angular components (page like) were added to the frontend app with:
+Angular components (page like) were added to the frontend app with for example:
 
 ```shell
   npx nx generate @nx/angular:component --name=task-list --project=frontend --standalone=true --style=none --no-interactive
 ```
 
-Angular services were added to the libs with:
+Angular services were added to the libs with for example:
 
 ```shell
   npx nx generate @schematics/angular:service --name=task --project=frontend --path=libs/api-sdk/src/api --no-interactive
