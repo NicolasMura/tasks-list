@@ -1,0 +1,7 @@
+@tailwind base;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-r from-blue-200 to-blue-300;
+  }
+}

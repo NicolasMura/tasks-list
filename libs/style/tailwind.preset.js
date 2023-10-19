@@ -3,10 +3,7 @@ const { join } = require('path');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
-    ...createGlobPatternsForDependencies(__dirname),
-  ],
+  content: ['./apps/**/*.{css,html,ts}', './libs/**/*.{css,html,ts}'],
   theme: {
     extend: {},
   },

@@ -1,0 +1,17 @@
+<mat-card class="text-gray-900">
+  <mat-card-content class="items-center justify-between">
+    <div *ngIf="!task?.completed">{{ task?.description }}</div>
+    <del *ngIf="task?.completed" class="text-gray-300">
+      {{ task?.description }}
+    </del>
+    <button
+      mat-mini-fab
+      [color]="task?.completed ? 'primary' : 'accent'"
+      aria-label="Example icon button with a menu icon"
+      (click)="toggleCompleted()"
+      [class.completed]="task?.completed"
+    >
+      <mat-icon>{{ task?.completed ? 'check' : '' }}</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>

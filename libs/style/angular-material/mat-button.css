@@ -1,0 +1,7 @@
+.mat-mdc-mini-fab.completed {
+  @apply bg-green-500;
+}
+
+.mat-mdc-mini-fab:not(.completed) {
+  @apply bg-gray-300;
+}

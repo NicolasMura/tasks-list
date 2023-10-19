@@ -1,0 +1,7 @@
+.mat-mdc-card {
+  @apply rounded-full !important;
+}
+
+.mat-mdc-card-content {
+  @apply flex !important;
+}

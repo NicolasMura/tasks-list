@@ -1,3 +1,7 @@
 {
-  "singleQuote": true
+  "htmlWhitespaceSensitivity": "ignore",
+  "singleQuote": true,
+  "trailingComma": "all",
+  "plugins": [],
+  "pluginSearchDirs": false
 }

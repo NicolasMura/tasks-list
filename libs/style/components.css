@@ -1,0 +1,4 @@
+@import 'angular-material/mat-button.css';
+@import 'angular-material/mat-card.css';
+
+@tailwind components;

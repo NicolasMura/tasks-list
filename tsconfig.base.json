@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ses/style": ["libs/style/tailwind.preset.js"],
+      "@ses/task": ["libs/components/task/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
