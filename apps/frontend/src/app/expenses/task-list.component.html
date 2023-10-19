@@ -1,0 +1,73 @@
+<div
+  *ngIf="{
+    expenses: expensesService.expenses$ | async,
+    errorMessage: expensesService.errorMessage$ | async,
+    totalCount: (expensesService.expensesTotalCount$ | async) ?? 0,
+    currentPage: (expensesService.currentPage$ | async) ?? 0,
+    currentLimit: (expensesService.currentLimit$ | async) ?? 0,
+    isLoading: isLoading$ | async,
+  } as data"
+  class="lu-wrapper"
+>
+  <div *ngIf="data.isLoading" class="overlay">Loading...</div>
+
+  <table
+    [class.opacity]="data.isLoading"
+    class="border-collapse table-auto w-full text-sm"
+    aria-label="Expenses entries"
+  >
+    <thead class="bg-white dark:bg-slate-800">
+      <tr
+        class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left"
+      >
+        <th class="py-4 pr-4 pl-4">id</th>
+        <th class="py-4 pr-4">nature</th>
+        <th class="py-4 pr-4">amount</th>
+        <th class="py-4 pr-4">purchasedOn</th>
+        <th class="py-4 pr-4">updatedAt</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white dark:bg-slate-800">
+      <tr *ngIf="!data.expenses?.length && !data.isLoading">
+        <td
+          colSpan="6"
+          class="border-b border-slate-100 py-4 pr-4 pl-4 text-slate-500"
+        >
+          No expenses
+        </td>
+      </tr>
+      <tr *ngFor="let expense of data.expenses" class="expense">
+        <td class="border-b border-slate-100 py-4 pr-4 pl-4 text-slate-500">
+          {{ expense.id }}
+        </td>
+        <td class="border-b border-slate-100 py-4 pr-4 text-slate-500">
+          {{ expense.nature }}
+        </td>
+        <td class="border-b border-slate-100 py-4 pr-4 text-slate-500">
+          {{ expense.amount | currency }}
+        </td>
+        <td class="border-b border-slate-100 py-4 pr-4 text-slate-500">
+          {{ expense.purchasedOn | date }}
+        </td>
+        <td class="border-b border-slate-100 py-4 pr-4 text-slate-500">
+          {{ expense.updatedAt | date }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <lu-pagination
+    *ngIf="data.totalCount && data.expenses?.length"
+    [totalCount]="data.totalCount"
+    [currentPage]="data.currentPage"
+    [currentLimit]="data.currentLimit"
+    [pageSizeOptions]="pageSizeOptions"
+    (limit)="updateLimit($event)"
+    (navigation)="goTo($event)"
+    aria-label="Pagination of expenses"
+  ></lu-pagination>
+
+  <div *ngIf="data.errorMessage" class="text-red-500">
+    {{ data.errorMessage }}
+  </div>
+</div>
