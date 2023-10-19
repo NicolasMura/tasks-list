@@ -2,7 +2,9 @@
   "name": "@tasks-list/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "serve": "nx serve"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.2.0",

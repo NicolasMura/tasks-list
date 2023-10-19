@@ -8,6 +8,7 @@
       }
     }
   },
+  "defaultProject": "frontend",
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
@@ -40,7 +41,7 @@
       "!{projectRoot}/.eslintrc.json",
       "!{projectRoot}/eslint.config.js"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": ["{workspaceRoot}/environments"]
   },
   "generators": {
     "@nx/angular:application": {
