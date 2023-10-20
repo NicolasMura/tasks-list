@@ -31,7 +31,7 @@ export class TaskService {
   fetchTasksFromApi(): Observable<ITask[]> {
     return of(INITIAL_TASKS).pipe(
       first(),
-      delay(500), // simulate an API call
+      delay(500), // just to simulate an API call
       catchError((error) => {
         this.handleError(error);
         throw error;
@@ -62,12 +62,16 @@ export class TaskService {
     this.tasksSubject.next(tasks);
   }
 
+  displayNotification(message: string, action = '', duration = 0): void {
+    this.snackBar.open(message, action, { duration });
+  }
+
   handleError(error: HttpErrorResponse) {
     const { message } = error;
 
     if (message) {
       this.errorMessageSubject.next(message);
-      this.snackBar.open(message, '', { duration: 5000 });
+      this.displayNotification(message, '', 5000);
     }
   }
 }

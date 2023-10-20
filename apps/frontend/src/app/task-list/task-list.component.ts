@@ -94,6 +94,7 @@ export class TaskListComponent implements OnInit {
       ]);
       this.taskForm.reset();
       this.taskForm.markAsPristine();
+      this.taskService.displayNotification('Task added!', '', 3000);
     }
   }
 
@@ -103,5 +104,6 @@ export class TaskListComponent implements OnInit {
 
   deleteTask(taskId: number): void {
     this.taskService.deleteTask(taskId);
+    this.taskService.displayNotification('Task deleted!', '', 3000);
   }
 }
