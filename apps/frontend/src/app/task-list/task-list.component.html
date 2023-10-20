@@ -1,5 +1,50 @@
-<div *ngIf="{ tasks: taskService.tasks$ | async } as data">
-  <div *ngFor="let task of data.tasks" class="mb-4">
-    <ses-task [task]="task"></ses-task>
+<form [formGroup]="taskForm" class="flex justify-center mb-3">
+  <mat-form-field appearance="outline" class="w-96 mr-2">
+    <input
+      #searchInputRef
+      matInput
+      formControlName="description"
+      placeholder="Add new note (CTRL/CMD + F)"
+    />
+  </mat-form-field>
+
+  <button
+    mat-fab
+    color="primary"
+    (click)="addTask()"
+    [disabled]="taskForm.invalid"
+    aria-label="Add new task"
+  >
+    <mat-icon>note_add</mat-icon>
+  </button>
+</form>
+
+<div
+  *ngIf="{
+    tasks: taskService.tasks$ | async,
+    isLoading: isLoading$ | async,
+    errorMessage: taskService.errorMessage$ | async
+  } as data"
+>
+  <mat-spinner *ngIf="data.isLoading" matSuffix class="m-auto"></mat-spinner>
+
+  <div class="grid gap-x-8 gap-y-4 grid-rows-1">
+    <ses-task *ngFor="let task of data.tasks" [task]="task"></ses-task>
+  </div>
+
+  <div
+    *ngIf="!data.tasks?.length && !data.isLoading && !data.errorMessage"
+    class="text-lg"
+  >
+    You have no task yet.
+  </div>
+
+  <div
+    *ngIf="data.errorMessage as error"
+    class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+    role="alert"
+  >
+    <strong class="font-bold">Holy smokes!</strong>
+    <span class="ml-1 block sm:inline">{{ error }}</span>
   </div>
 </div>
