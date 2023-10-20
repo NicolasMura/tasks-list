@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@ses/style": ["libs/style/tailwind.preset.js"],
-      "@ses/task": ["libs/components/task/src/index.ts"]
+      "@ses/task": ["libs/components/task/src/index.ts"],
+      "@ses/api-sdk": ["libs/api-sdk/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

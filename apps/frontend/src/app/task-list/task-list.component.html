@@ -1,3 +1,5 @@
-<div *ngFor="let task of tasks" class="mb-4">
-  <ses-task [task]="task"></ses-task>
+<div *ngIf="{ tasks: taskService.tasks$ | async } as data">
+  <div *ngFor="let task of data.tasks" class="mb-4">
+    <ses-task [task]="task"></ses-task>
+  </div>
 </div>

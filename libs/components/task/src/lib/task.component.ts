@@ -3,12 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-
-export interface Task {
-  id: number;
-  description: string;
-  completed: boolean;
-}
+import { ITask } from '@ses/api-sdk';
 
 @Component({
   selector: 'ses-task',
@@ -18,7 +13,7 @@ export interface Task {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskComponent {
-  @Input() task?: Task;
+  @Input() task?: ITask;
 
   toggleCompleted(): void {
     if (this.task) {

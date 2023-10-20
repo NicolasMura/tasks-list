@@ -48,20 +48,21 @@ Tailwind was added with:
   npx nx g @nx/angular:setup-tailwind frontend
 ```
 
-Angular components (like pages) were added to the frontend app with for example:
+Angular components (like pages) were added to the frontend app with:
 
 ```shell
   npx nx generate @nx/angular:component --name=task-list --project=frontend --standalone=true --style=none --no-interactive
 ```
 
-Other Angular components were added to shared libraries with [Nx](https://nx.dev):
+Other Angular components were added to shared libraries with:
 
 ```shell
   npx nx generate @nx/angular:library --name=task --prefix=ses --directory=libs/components/task --changeDetection=OnPush --flat=true --projectNameAndRootFormat=as-provided --skipModule=true --standalone=true --style=none --no-interactive
 ```
 
-Angular services were added to the libs with for example:
+Angular services were added to the libs with:
 
 ```shell
+  npx nx generate @nx/angular:library --name=api-sdk --directory=libs/api-sdk --flat=true --projectNameAndRootFormat=as-provided --skipModule=true --style=none --no-interactive
   npx nx generate @schematics/angular:service --name=task --project=frontend --path=libs/api-sdk/src/api --no-interactive
 ```

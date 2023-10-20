@@ -1,12 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { TaskService } from '@ses/api-sdk';
 import { TaskComponent } from '@ses/task';
-
-export interface Task {
-  id: number;
-  description: string;
-  completed: boolean;
-}
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'ses-task-list',
@@ -14,10 +10,13 @@ export interface Task {
   imports: [CommonModule, TaskComponent],
   templateUrl: './task-list.component.html',
 })
-export class TaskListComponent {
-  tasks: Task[] = [
-    { id: 1, description: 'Task 1', completed: false },
-    { id: 2, description: 'Task 2', completed: true },
-    { id: 3, description: 'Task 3', completed: false },
-  ];
+export class TaskListComponent implements OnInit {
+  taskService = inject(TaskService);
+
+  ngOnInit(): void {
+    this.taskService
+      .fetchTasksFromApi()
+      .pipe(tap((tasks) => this.taskService.setTasks(tasks)))
+      .subscribe();
+  }
 }
