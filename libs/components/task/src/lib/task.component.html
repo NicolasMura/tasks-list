@@ -4,14 +4,28 @@
     <del *ngIf="task?.completed" class="text-gray-300">
       {{ task?.description }}
     </del>
-    <button
-      mat-mini-fab
-      [color]="task?.completed ? 'primary' : 'accent'"
-      aria-label="Example icon button with a menu icon"
-      (click)="toggleCompleted()"
-      [class.completed]="task?.completed"
-    >
-      <mat-icon>{{ task?.completed ? 'check' : '' }}</mat-icon>
-    </button>
+
+    <div class="grid grid-flow-col gap-4">
+      <button
+        mat-mini-fab
+        color="warn"
+        aria-label="Click to delete task"
+        (click)="deleteNote()"
+        [class.completed]="task?.completed"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <button
+        mat-mini-fab
+        [color]="task?.completed ? 'primary' : 'accent'"
+        aria-label="Click to toggle task completion"
+        (click)="toggleCompleted()"
+        class="toggle"
+        [class.completed]="task?.completed"
+      >
+        <mat-icon>{{ task?.completed ? 'check' : '' }}</mat-icon>
+      </button>
+    </div>
   </mat-card-content>
 </mat-card>

@@ -52,10 +52,10 @@ export class TaskService {
     this.tasksSubject.next(tasks);
   }
 
-  completeTask(taskId: number): void {
+  toggleTaskCompletion(taskId: number): void {
     const tasks = this.getTasks().map((task) => {
       if (task.id === taskId) {
-        return { ...task, completed: true };
+        return { ...task, completed: !task.completed };
       }
       return task;
     });

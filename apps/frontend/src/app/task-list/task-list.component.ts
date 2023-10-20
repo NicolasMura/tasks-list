@@ -96,4 +96,12 @@ export class TaskListComponent implements OnInit {
       this.taskForm.markAsPristine();
     }
   }
+
+  toggleTaskCompletion(taskId: number): void {
+    this.taskService.toggleTaskCompletion(taskId);
+  }
+
+  deleteTask(taskId: number): void {
+    this.taskService.deleteTask(taskId);
+  }
 }
