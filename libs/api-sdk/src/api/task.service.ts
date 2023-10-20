@@ -11,7 +11,7 @@ import {
 } from 'rxjs';
 import { ITask } from '../model/task';
 
-const INITIAL_TASKS: ITask[] = [
+export const INITIAL_TASKS: ITask[] = [
   { id: 3, description: 'Task 3', completed: false },
   { id: 2, description: 'Task 2', completed: true },
   { id: 1, description: 'Task 1', completed: false },
